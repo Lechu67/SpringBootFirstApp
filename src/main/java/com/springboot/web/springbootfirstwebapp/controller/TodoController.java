@@ -10,30 +10,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.springboot.web.springbootfirstwebapp.service.LoginService;
+import com.springboot.web.springbootfirstwebapp.service.TodoService;
 
 
 @Controller
 @SessionAttributes("name")
-public class LoginController {
+public class TodoController {
 	
 	@Autowired
-	LoginService service;
+	TodoService service;
 	
-	@RequestMapping(value="/login", method=RequestMethod.GET)
-	public String showLoginPage( ModelMap model){
-		//model.put("name", name);
-		return "login";
+	@RequestMapping(value="/list-todos", method=RequestMethod.GET)
+	public String showTodosList( ModelMap model){
+		String name = (String) model.get("name");
+		model.put("todos", service.retrieveTodos(name));
+		return "list-todos";
 	}
-	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String showWelcomePage(@RequestParam String name,@RequestParam String password, ModelMap model){
-		
-		if(!service.validateUser(name, password)){
-			model.put("errorMessage", "Invalid username or password");
-			return "login";
-		}
-		
-		model.put("name", name);
-		model.put("password",password);
-		return "welcome";
-	}
+	
 }
