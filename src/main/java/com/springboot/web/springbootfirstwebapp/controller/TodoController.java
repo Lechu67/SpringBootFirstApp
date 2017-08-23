@@ -1,5 +1,7 @@
 package com.springboot.web.springbootfirstwebapp.controller;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,5 +28,15 @@ public class TodoController {
 		model.put("todos", service.retrieveTodos(name));
 		return "list-todos";
 	}
+	@RequestMapping(value="/todo", method=RequestMethod.GET)
+	public String showFormForAdding( ModelMap model){
+		return "todo";
+	}
+	@RequestMapping(value="/todo", method=RequestMethod.POST)
+	public String addTodo( ModelMap model, @RequestParam String description){
+		service.addTodo((String) model.get("name"), description, new Date(), false);
+		return "redirect:/list-todos";
+	}
+	
 	
 }

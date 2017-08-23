@@ -97,7 +97,7 @@ public class Todo {
 
 	@Override
 	public String toString() {
-		return String.format("Todo [id=%s, user=%s, description=%s, targetDate=%s, isDone=%s]", id, user, description,
+		return String.format("Todo [id=%s, user=%s, description=%s, targetDate=%s, isDone=%s]\n", id, user, description,
 				targetDate, isDone);
 	}
 }
