@@ -2,14 +2,21 @@ package com.springboot.web.springbootfirstwebapp.model;
 
 import java.util.Date;
 
+import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Todo {
 	
 	private int id;
     private String user;
+    @Size(min=10, message="Minimum 10 characters")
     private String description;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date targetDate;
     private boolean isDone;
     
+    public Todo(){}
     
 	public Todo(int id, String user, String description, Date targetDate, boolean isDone) {
 		super();
