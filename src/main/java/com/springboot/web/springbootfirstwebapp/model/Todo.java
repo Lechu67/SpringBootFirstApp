@@ -12,7 +12,6 @@ public class Todo {
     private String user;
     @Size(min=10, message="Minimum 10 characters")
     private String description;
-    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date targetDate;
     private boolean isDone;
     
