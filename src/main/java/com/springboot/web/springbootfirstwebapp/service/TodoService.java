@@ -14,35 +14,48 @@ import com.springboot.web.springbootfirstwebapp.model.Todo;
 public class TodoService {
 
 	private static List<Todo> todos = new ArrayList<Todo>();
-    private static int todoCount = 3;
+	private static int todoCount = 4;
 
-    static {
-        todos.add(new Todo(1, "Leszek", "Learn Spring MVC", new Date(),
-                false));
-        todos.add(new Todo(2, "Leszek", "Learn Struts", new Date(), false));
-        todos.add(new Todo(3, "Leszek", "Learn Hibernate", new Date(),
-                false));
-    }
-    
-    public List<Todo> retrieveTodos(String user) {
-    	
-    	List<Todo> tempList = new ArrayList<>();
-    	for (Todo todo : todos) {
-    		if(todo.getUser().equals(user))
-    			tempList.add(todo);
+	static {
+		todos.add(new Todo(1, "Leszek", "Learn Spring MVC", new Date(), false));
+		todos.add(new Todo(2, "Leszek", "Learn Struts", new Date(), false));
+		todos.add(new Todo(3, "Leszek", "Learn Hibernate", new Date(), false));
+	}
+
+	public List<Todo> retrieveTodos(String user) {
+
+		List<Todo> tempList = new ArrayList<>();
+		for (Todo todo : todos) {
+			if (todo.getUser().equals(user))
+				tempList.add(todo);
 		}
-    	return tempList;
-    }
-    public void addTodo(String name, String description, Date targetDate,boolean isDone){
-    	todos.add(new Todo(todoCount++,name,description,targetDate,isDone));
-    }
-    public void deleteTodo(int id) {
-        Iterator<Todo> iterator = todos.iterator();
-        while (iterator.hasNext()) {
-            Todo todo = iterator.next();
-            if (todo.getId() == id) {
-                iterator.remove();
-            }
-        }
-    }
+		return tempList;
+	}
+
+	public void addTodo(String name, String description, Date targetDate, boolean isDone) {
+		todos.add(new Todo(todoCount++, name, description, targetDate, isDone));
+	}
+
+	public void updateTodo(Todo todo) {
+		todos.remove(todo);
+		todos.add(todo);
+	}
+
+	public void deleteTodo(int id) {
+		Iterator<Todo> iterator = todos.iterator();
+		while (iterator.hasNext()) {
+			Todo todo = iterator.next();
+			if (todo.getId() == id) {
+				iterator.remove();
+			}
+		}
+	}
+
+	public Todo retrieveTodo(int id) {
+		for (Todo todo : todos) {
+			if (todo.getId() == id)
+				return todo;
+		}
+		return null;
+	}
 }
