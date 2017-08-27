@@ -16,6 +16,7 @@
 				<form:errors path="targetDate" cssClass="test-warning"></form:errors>
 			</fieldset>
 			<button type="submit" class="btn btn-success">Add</button>
+			<button type="reset" class="btn btn-danger">Reset</button>
 		</form:form>
 	</div>
 <%@ include file="common/footer.jspf" %>
